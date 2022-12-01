@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using TiendaJugos.Core.Entidades
+@model List<Jugo>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Inventario de Jugos</h1>
+            </div>
+        </div>
+
+        <h2>Index</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Jugo j in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @j.Nombre
+                                            </td>
+                                            <td>
+                                                @j.Descripcion
+                                            </td>
+                                            <td>
+                                                @j.Precio
+                                            </td>
+                                            <td>
+                                                @j.Cantidad
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
