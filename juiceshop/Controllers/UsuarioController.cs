@@ -13,5 +13,9 @@ namespace juiceshop.Controllers
         {
             return View();
         }
+        public ActionResult InicioSesion()
+        {
+            return View();
+        }
     }
 }

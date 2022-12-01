@@ -210,6 +210,7 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Jugo\Index.cshtml" />
     <Content Include="Views\Jugo\Registro.cshtml" />
+    <Content Include="Views\Usuario\InicioSesion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
