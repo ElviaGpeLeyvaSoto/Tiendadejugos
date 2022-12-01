@@ -1,0 +1,41 @@
+﻿@using TiendaJugos.Core.Entidades
+@model Jugo
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Registro de jugos</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <form action="@Url.Action("Guardar","Jugo")">
+                            <input type="hidden" class="form-control" name="id" value="@Model.Id" />
+
+                            <div class="form-group">
+                                <label>Nombre de jugo:</label>
+                                <input class="form-control" name="nombre" value="@if (Model.Id !=0) { @Model.Nombre }">
+                                <label>Descripcion:</label>
+                                <input class="form-control" name="descripcion" value="@if (Model.Id !=0) { @Model.Descripcion }">
+                                <label>Precio:</label>
+                                <input class="form-control" name="precio" value="@if (Model.Id !=0) { @Model.Precio }">
+                                <label>Cantidad:</label>
+                                <input class="form-control" name="nombre" value="@if (Model.Id !=0) { @Model.Nombre }">
+                            </div>
+                            <button class="btn btn-success" type="submit">Guardar</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

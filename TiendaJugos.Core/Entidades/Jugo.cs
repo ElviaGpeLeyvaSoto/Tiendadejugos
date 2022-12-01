@@ -82,6 +82,48 @@ namespace TiendaJugos.Core.Entidades
             }
             return jugo;
         }
+        public static bool Guardar(int id, string nombre, string descripcion, double precio, int cantidad)
+        {
+            bool result = false;
+            try
+            {
+                Conexion conexion = new Conexion();
+                if (conexion.OpenConnection())
+                {
+                    MySqlCommand cmd = conexion.connection.CreateCommand();
+                    if (id == 0)
+                    {
+
+                        cmd.CommandText = "INSERT INTO jugo (nombre, descripcion, precio, cantidad) VALUES (@nombre, @descripcion, @precio, @cantidad)";
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@precio", precio);
+                        cmd.Parameters.AddWithValue("@cantidad", cantidad);
+
+                    }
+                    else
+                    {
+
+                        cmd.CommandText = "UPDATE estado SET nombre = @nombre, descripcion = @descripcion, precio = @precio, cantidad = @cantidad WHERE id = @id";
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@precio", precio);
+                        cmd.Parameters.AddWithValue("@cantidad", cantidad);
+
+                    }
+                    result = cmd.ExecuteNonQuery() == 1;
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
 
     }
 }
