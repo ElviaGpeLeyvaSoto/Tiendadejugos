@@ -13,7 +13,7 @@ namespace TiendaJugos.Core.Entidades
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public double Precio { get; set; }
-        public int Cantidad { get; set; }
+    
 
         public static List<Jugo> GetAll()
         {
@@ -23,7 +23,7 @@ namespace TiendaJugos.Core.Entidades
                 Conexion conexion = new Conexion();
                 if (conexion.OpenConnection())
                 {
-                    string query = "SELECT id, nombre, descripcion, precio, cantidad FROM jugo;";
+                    string query = "SELECT id, nombre, descripcion, precio FROM jugo;";
 
                     MySqlCommand command = new MySqlCommand(query, conexion.connection);
 
@@ -35,7 +35,7 @@ namespace TiendaJugos.Core.Entidades
                         jugo.Nombre = dataReader["nombre"].ToString();
                         jugo.Descripcion = dataReader["descripcion"].ToString();
                         jugo.Precio = double.Parse(dataReader["precio"].ToString());
-                        jugo.Cantidad = int.Parse(dataReader["cantidad"].ToString());
+                     
 
                         jugos.Add(jugo);
                     }
@@ -58,7 +58,7 @@ namespace TiendaJugos.Core.Entidades
                 Conexion conexion = new Conexion();
                 if (conexion.OpenConnection())
                 {
-                    string query = "SELECT id, nombre, descripcion, precio, cantidad FROM jugo WHERE id = @id";
+                    string query = "SELECT id, nombre, descripcion, precio  FROM jugo WHERE id = @id";
 
                     MySqlCommand cmd = new MySqlCommand(query, conexion.connection);
                     cmd.Parameters.AddWithValue("@id", id);
@@ -70,7 +70,7 @@ namespace TiendaJugos.Core.Entidades
                         jugo.Nombre = dataReader["nombre"].ToString();
                         jugo.Descripcion = dataReader["descripcion"].ToString();
                         jugo.Precio = double.Parse(dataReader["precio"].ToString());
-                        jugo.Cantidad = int.Parse(dataReader["cantidad"].ToString());
+             
                     }
                 }
 
@@ -82,7 +82,7 @@ namespace TiendaJugos.Core.Entidades
             }
             return jugo;
         }
-        public static bool Guardar(int id, string nombre, string descripcion, double precio, int cantidad)
+        public static bool Guardar(int id, string nombre, string descripcion, double precio)
         {
             bool result = false;
             try
@@ -94,22 +94,20 @@ namespace TiendaJugos.Core.Entidades
                     if (id == 0)
                     {
 
-                        cmd.CommandText = "INSERT INTO jugo (nombre, descripcion, precio, cantidad) VALUES (@nombre, @descripcion, @precio, @cantidad)";
+                        cmd.CommandText = "INSERT INTO jugo (nombre, descripcion, precio) VALUES (@nombre, @descripcion, @precio)";
                         cmd.Parameters.AddWithValue("@nombre", nombre);
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@precio", precio);
-                        cmd.Parameters.AddWithValue("@cantidad", cantidad);
+         
 
                     }
                     else
                     {
 
-                        cmd.CommandText = "UPDATE estado SET nombre = @nombre, descripcion = @descripcion, precio = @precio, cantidad = @cantidad WHERE id = @id";
+                        cmd.CommandText = "UPDATE estado SET nombre = @nombre, descripcion = @descripcion, precio = @precio WHERE id = @id";
                         cmd.Parameters.AddWithValue("@nombre", nombre);
                         cmd.Parameters.AddWithValue("@descripcion", descripcion);
                         cmd.Parameters.AddWithValue("@precio", precio);
-                        cmd.Parameters.AddWithValue("@cantidad", cantidad);
-
                     }
                     result = cmd.ExecuteNonQuery() == 1;
 

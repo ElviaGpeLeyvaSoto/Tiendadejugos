@@ -36,6 +36,7 @@
                                             <td>
                                                 @j.Nombre
                                             </td>
+
                                             <td>
                                                 @j.Descripcion
                                             </td>
@@ -43,8 +44,9 @@
                                                 @j.Precio
                                             </td>
                                             <td>
-                                                @j.Cantidad
+                                                <a href="@Url.Action("Registro", "Jugo", new {id= j.Id})" class=" btn btn-primary">Editar</a>
                                             </td>
+
                                         </tr>
                                     }
 
